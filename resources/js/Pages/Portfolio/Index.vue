@@ -1,4 +1,11 @@
 <template>
+    <SEOHeader
+        title="Software Development Portfolio in Kenya | Propify Solutions Projects"
+        description="View our portfolio of software development projects built for Kenyan businesses. Real estate platforms, AI solutions, SaaS applications, and automation systems developed in Nairobi, Kenya."
+        keywords="kenya software projects, nairobi tech portfolio, web development projects kenya, mobile app portfolio kenya, saas applications kenya, real estate software kenya, business automation kenya, AI solutions nairobi, software case studies kenya, digital solutions portfolio kenya, kenyan tech projects, local software development, nairobi developers portfolio, kenyan startups projects, e-commerce platforms kenya"
+        :image="og_image"
+        :url="route('portfolio')"
+    />
     <AppLayout>
         <!-- Hero Section -->
         <section class="pt-32 pb-20 bg-light dark:bg-dark">
@@ -441,8 +448,10 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
+import SEOHeader from "@/Components/Seo/SEOHeader.vue";
 
 const props = defineProps({
+    og_image: String,
     portfolio: {
         type: Array,
         required: true,

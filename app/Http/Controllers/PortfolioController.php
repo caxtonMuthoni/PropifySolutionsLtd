@@ -11,6 +11,7 @@ class PortfolioController extends Controller
     {
 
         return Inertia::render('Portfolio/Index', [
+            'og_image' => asset('/images/branding/og.png'),
             'portfolio' => [
                 [
                     'id' => 1,

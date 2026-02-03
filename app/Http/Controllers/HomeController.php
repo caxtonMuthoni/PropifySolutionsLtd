@@ -9,6 +9,7 @@ class HomeController extends Controller
     public function index()
     {
         return Inertia::render('Home/Index', [
+            'og_image' => asset('/images/branding/og.png'),
             'services' => [
                 [
                     'id' => 1,
@@ -142,11 +143,9 @@ class HomeController extends Controller
 
     public function about()
     {
-        return Inertia::render('About/Index');
-    }
 
-    public function contact()
-    {
-        return Inertia::render('Contact/Index');
+        return Inertia::render('About/Index', [
+            'og_image' => asset('/images/branding/og.png'),
+        ]);
     }
 }

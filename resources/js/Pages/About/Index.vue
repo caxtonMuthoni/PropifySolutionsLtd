@@ -1,4 +1,11 @@
 <template>
+    <SEOHeader
+        title="About Propify Solutions | Leading Software Company in Kenya"
+        description="Propify Solutions is a premier software development company based in Nairobi, Kenya. Since 2020, we've been delivering exceptional digital solutions to Kenyan businesses and international clients."
+        keywords="software company kenya, tech agency nairobi, about propify kenya, nairobi software developers, kenyan tech company, software development team kenya, IT company nairobi, digital agency kenya, tech experts kenya, software solutions kenya, nairobi tech startup, kenyan developers, IT services kenya, technology partners kenya, software consultancy nairobi"
+        :image="og_image"
+        :url="route('about')"
+    />
     <AppLayout>
         <!-- Hero Section -->
         <section class="pt-32 pb-20 bg-light dark:bg-dark">
@@ -609,5 +616,9 @@
 </template>
 
 <script setup>
+import SEOHeader from "@/Components/Seo/SEOHeader.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
+defineProps({
+    og_image: String,
+});
 </script>

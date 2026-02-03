@@ -1,4 +1,13 @@
 <template>
+    <SEOHeader
+        title="Custom Software Development Services in Kenya | Propify Solutions"
+        description="Professional software development services in Nairobi, Kenya. We build custom web applications, SaaS platforms, API integration, and business automation solutions for Kenyan businesses and startups."
+        keywords="software development kenya, custom software nairobi, web development company kenya, saas development kenya, api integration services nairobi, tech solutions kenya, software agency nairobi, digital transformation kenya, business automation kenya, mobile app development kenya, e-commerce solutions kenya, cloud services nairobi, IT solutions kenya, software maintenance kenya, database design kenya, backend development nairobi"
+        pageType="services"
+        :image="og_image"
+        :url="route('services')"
+    />
+
     <AppLayout>
         <!-- Hero Section -->
         <section class="pt-32 pb-20 bg-light dark:bg-dark">
@@ -535,8 +544,10 @@
 <script setup>
 import { ref } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
+import SEOHeader from "@/Components/Seo/SEOHeader.vue";
 
 const props = defineProps({
+    og_image: String,
     services: {
         type: Array,
         required: true,

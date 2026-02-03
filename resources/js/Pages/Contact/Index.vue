@@ -1,4 +1,11 @@
 <template>
+    <SEOHeader
+        title="Contact Software Developers in Nairobi, Kenya | Propify Solutions"
+        description="Get in touch with our software development team in Westlands, Nairobi. Contact us for free consultation on custom software, web applications, and digital solutions for your Kenyan business."
+        keywords="contact software developers nairobi, kenya software company contact, nairobi tech agency contact, software development quote kenya, free consultation nairobi, web development services kenya, get software quote kenya, IT services contact nairobi, tech support kenya, software maintenance nairobi, digital solutions kenya contact, propify solutions contact, nairobi office location, westlands software company, kenyan developers contact"
+        :image="og_image"
+        :url="route('contact')"
+    />
     <AppLayout>
         <!-- Hero Section -->
         <section class="pt-32 pb-20 bg-light dark:bg-dark">
@@ -667,9 +674,11 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import FlashMessage from "@/Components/FlashMessage.vue";
 import VueTurnstile from "vue-turnstile";
 import { computed } from "vue";
+import SEOHeader from "@/Components/Seo/SEOHeader.vue";
 
 // Props
 const props = defineProps({
+    og_image: String,
     contactInfo: {
         type: Object,
         required: true,

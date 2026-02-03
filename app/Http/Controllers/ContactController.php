@@ -15,6 +15,7 @@ class ContactController extends Controller
     {
 
         return Inertia::render('Contact/Index', [
+            'og_image' => asset('/images/branding/og.png'),
             'contactInfo' => [
                 'emails' => [
                     'general' => 'hello@propify.co.ke',
