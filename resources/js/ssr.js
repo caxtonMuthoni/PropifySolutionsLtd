@@ -6,6 +6,7 @@ import { createSSRApp, h } from "vue";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy";
 
 const appName = import.meta.env.VITE_APP_NAME || "Propify Solutions Ltd";
+const port = Number(import.meta.env.VITE_INERTIA_SSR_PORT || 13714);
 
 createServer(
     (page) =>
@@ -27,5 +28,5 @@ createServer(
                     });
             },
         }),
-    import.meta.env.VITE_INERTIA_SSR_PORT || 13714,
+    port,
 );
