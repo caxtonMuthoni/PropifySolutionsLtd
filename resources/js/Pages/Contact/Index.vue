@@ -713,9 +713,11 @@ const submitForm = () => {
 };
 
 const currentTheme = computed(() => {
-    const savedTheme = localStorage.getItem("darkMode");
-    if (savedTheme && savedTheme == "true") {
-        return "dark";
+    if (typeof window !== "undefined") {
+        const savedTheme = localStorage.getItem("darkMode");
+        if (savedTheme && savedTheme == "true") {
+            return "dark";
+        }
     }
     return "light";
 });

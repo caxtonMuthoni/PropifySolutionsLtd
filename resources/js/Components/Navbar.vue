@@ -231,7 +231,10 @@ const toggleDarkMode = () => {
 
 const initializeDarkMode = () => {
     // Check localStorage first
-    const savedMode = localStorage.getItem("darkMode");
+    let savedMode = null;
+    if (typeof window !== "undefined") {
+        savedMode = localStorage.getItem("darkMode");
+    }
 
     if (savedMode !== null) {
         // Use saved preference
@@ -257,25 +260,27 @@ const initializeDarkMode = () => {
 
 // Watch for system preference changes (optional)
 const watchSystemPreference = () => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    if (typeof window !== "undefined") {
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-    const handleChange = (e) => {
-        // Only update if user hasn't explicitly set a preference
-        if (localStorage.getItem("darkMode") === null) {
-            if (e.matches) {
-                darkMode.value = true;
-                document.documentElement.classList.add("dark");
-            } else {
-                darkMode.value = false;
-                document.documentElement.classList.remove("dark");
+        const handleChange = (e) => {
+            // Only update if user hasn't explicitly set a preference
+            if (localStorage.getItem("darkMode") === null) {
+                if (e.matches) {
+                    darkMode.value = true;
+                    document.documentElement.classList.add("dark");
+                } else {
+                    darkMode.value = false;
+                    document.documentElement.classList.remove("dark");
+                }
             }
-        }
-    };
+        };
 
-    mediaQuery.addEventListener("change", handleChange);
+        mediaQuery.addEventListener("change", handleChange);
 
-    // Cleanup function
-    return () => mediaQuery.removeEventListener("change", handleChange);
+        // Cleanup function
+        return () => mediaQuery.removeEventListener("change", handleChange);
+    }
 };
 
 // Close mobile menu when clicking outside
