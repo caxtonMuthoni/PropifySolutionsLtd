@@ -570,7 +570,7 @@
                                     class="w-full flex flex-col items-center gap-2 mt-4"
                                 >
                                     <vue-turnstile
-                                        site-key="1x00000000000000000000AA"
+                                        :site-key="turnstile_site_key"
                                         v-model="form.token"
                                         :theme="currentTheme"
                                     />
@@ -679,6 +679,8 @@ const props = defineProps({
         default: () => ({}),
     },
 });
+
+const turnstile_site_key = import.meta.env.VITE_TURNSTILE_SITE_KEY;
 
 // Form state
 const form = useForm({
