@@ -11,7 +11,7 @@ import { Link } from "@inertiajs/vue3";
             ></div>
             <!-- Main logo -->
             <div
-                class="relative w-12 h-12 bg-gradient-to-br from-primary-600 to-secondary-500 rounded-xl flex items-center justify-center shadow-lg transform group-hover:rotate-3 transition-transform duration-300"
+                class="relative w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary-600 to-secondary-500 rounded-xl flex items-center justify-center shadow-lg transform group-hover:rotate-3 transition-transform duration-300"
             >
                 <span class="text-white font-bold text-xl">P</span>
             </div>
@@ -21,13 +21,15 @@ import { Link } from "@inertiajs/vue3";
             ></div>
         </div>
         <div>
-            <span class="text-2xl font-bold text-slate-900 dark:text-white">
+            <span
+                class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white"
+            >
                 Propify<span class="text-primary-500 dark:text-primary-400"
                     >.</span
                 >
             </span>
             <span
-                class="text-sm font-medium text-slate-600 dark:text-slate-400 block -mt-1"
+                class="text-xs md:text-sm font-medium text-slate-600 dark:text-slate-400 block -mt-1"
                 >Solutions Ltd</span
             >
         </div>

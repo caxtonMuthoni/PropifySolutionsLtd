@@ -8,7 +8,7 @@
     />
     <AppLayout>
         <!-- Hero Section -->
-        <section class="pt-32 pb-20 bg-light dark:bg-dark">
+        <section class="pt-32 pb-8 md:pb-20 bg-light dark:bg-dark">
             <FlashMessage />
             <div class="container mx-auto px-6">
                 <div class="max-w-4xl mx-auto text-center">
@@ -26,7 +26,7 @@
         </section>
 
         <!-- Contact Content -->
-        <section class="py-20 bg-white dark:bg-gray-900">
+        <section class="py-10 md:py-20 bg-white dark:bg-gray-900">
             <div class="container mx-auto px-6">
                 <div
                     class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto"

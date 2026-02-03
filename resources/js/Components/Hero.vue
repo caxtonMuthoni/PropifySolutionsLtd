@@ -23,7 +23,7 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-4xl mx-auto text-center">
                 <h1
-                    class="text-5xl md:text-7xl font-bold text-dark dark:text-light mb-6 animate-fade-in"
+                    class="text-3xl md:text-7xl font-bold text-dark dark:text-light mb-6 animate-fade-in"
                 >
                     We Design & Build
                     <span
@@ -35,7 +35,7 @@
                 </h1>
 
                 <p
-                    class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 animate-slide-up"
+                    class="text-lg md:text-2xl text-gray-600 dark:text-gray-300 mb-12 animate-slide-up"
                 >
                     Secure, high-performance software solutions engineered for
                     long-term growth.

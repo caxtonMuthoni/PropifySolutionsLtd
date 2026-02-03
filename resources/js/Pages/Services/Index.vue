@@ -10,7 +10,7 @@
 
     <AppLayout>
         <!-- Hero Section -->
-        <section class="pt-32 pb-20 bg-light dark:bg-dark">
+        <section class="pt-32 md:pb-20 pb-8 bg-light dark:bg-dark">
             <div class="container mx-auto px-6">
                 <div class="max-w-4xl mx-auto text-center">
                     <h1
@@ -46,7 +46,7 @@
         </section>
 
         <!-- Services Overview -->
-        <section class="py-20 bg-white dark:bg-gray-900">
+        <section class="py-10 md:py-20 bg-white dark:bg-gray-900">
             <div class="container mx-auto px-6">
                 <div class="max-w-7xl mx-auto">
                     <!-- Stats Banner -->

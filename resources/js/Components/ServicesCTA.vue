@@ -148,7 +148,7 @@
                     >
                         <Link
                             :href="route('contact')"
-                            class="group bg-white hover:bg-gray-50 text-primary-600 dark:text-gray-800 px-10 py-5 rounded-2xl font-semibold text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl flex items-center space-x-4 w-full sm:w-auto justify-center max-w-xs sm:max-w-none"
+                            class="group bg-white hover:bg-gray-50 text-primary-600 dark:text-gray-800 px-10 py-5 rounded-2xl font-semibold text-base md:text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl flex items-center space-x-4 w-full sm:w-auto justify-center max-w-xs sm:max-w-none"
                         >
                             <span class="font-bold"
                                 >Get Your Service Quote</span
