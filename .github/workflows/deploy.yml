@@ -51,5 +51,6 @@ jobs:
             git pull origin main
             composer install --ignore-platform-reqs --no-interaction --prefer-dist
             php artisan migrate --force --seed
+            php artisan inertia:stop-ssr
             php artisan optimize:clear
             php artisan optimize
