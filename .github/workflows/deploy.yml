@@ -28,7 +28,7 @@ jobs:
       - name: Build Laravel + SSR
         run: npm run build
         env:
-          VITE_APP_ENV: ${{ secrets.VITE_APP_ENV }}
+          VITE_TURNSTILE_SITE_KEY: ${{ secrets.VITE_TURNSTILE_SITE_KEY }}
 
       - name: Upload build + SSR files
         uses: appleboy/scp-action@master
