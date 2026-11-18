@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\SiteData;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,5 +23,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Vite::prefetch(concurrency: 3);
+
+        View::composer('*', function (\Illuminate\View\View $view): void {
+            static $site = null;
+
+            $view->with('site', $site ??= app(SiteData::class)->toArray());
+        });
     }
 }
