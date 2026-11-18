@@ -75,7 +75,7 @@ return [
         'ceo' => [
             'name' => 'Caxton Muthoni',
             'role' => 'Founder & CEO',
-            'photo' => '/images/team/ceo.jpg',
+            'photo' => '/images/team/ceo.webp',
             'linkedin' => '',
             'message' => [
                 'We started Propify Solutions because African businesses deserve software built for how they actually work — mobile money, patchy networks, local regulation and all.',

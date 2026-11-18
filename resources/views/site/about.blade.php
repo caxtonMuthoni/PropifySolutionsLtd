@@ -34,7 +34,11 @@
         <div class="container-page grid items-center gap-12 lg:grid-cols-5">
             <div class="relative lg:col-span-2">
                 <div class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-primary-200 to-accent-300/60 blur-2xl dark:from-primary-900 dark:to-ink-800" aria-hidden="true"></div>
-                <x-team-avatar :person="$team['ceo']" size="lg" class="aspect-[4/5] w-full rounded-3xl shadow-2xl" />
+                <div class="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-gradient-to-br from-primary-500 via-primary-700 to-ink-900 shadow-2xl">
+                    <div class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent-400/30 blur-3xl" aria-hidden="true"></div>
+                    <div class="pointer-events-none absolute inset-0 bg-rings bg-cover bg-center opacity-60" aria-hidden="true"></div>
+                    <x-team-avatar :person="$team['ceo']" size="lg" class="absolute inset-x-0 bottom-0 h-[92%] w-full !object-contain object-bottom" />
+                </div>
             </div>
             <div class="lg:col-span-3">
                 <p class="eyebrow">A word from our CEO</p>

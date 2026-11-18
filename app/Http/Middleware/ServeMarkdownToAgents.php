@@ -43,7 +43,9 @@ class ServeMarkdownToAgents
 
         if ($isPublicPage && str_contains((string) $response->headers->get('Content-Type'), 'text/html')) {
             $response->headers->set('Vary', 'Accept', false);
-            $response->headers->set('Link', '<'.$this->seo->markdownUrl($path).'>; rel="alternate"; type="text/markdown", <'.$this->seo->url('/llms.txt').'>; rel="describedby"; type="text/plain"', false);
+            $agentLinks = '<'.$this->seo->markdownUrl($path).'>; rel="alternate"; type="text/markdown", <'.$this->seo->url('/llms.txt').'>; rel="describedby"; type="text/plain"';
+            $existingLinks = implode(', ', $response->headers->all('link'));
+            $response->headers->set('Link', $existingLinks === '' ? $agentLinks : "{$existingLinks}, {$agentLinks}");
         }
 
         return $response;
