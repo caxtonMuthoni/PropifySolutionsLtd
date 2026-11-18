@@ -1,19 +1,28 @@
 <?php
 
+namespace Tests\Feature\Auth;
+
+use App\Livewire\Auth\Register;
+use Livewire\Livewire;
+
 test('registration screen can be rendered', function () {
     $response = $this->get('/register');
 
-    $response->assertStatus(200);
+    $response
+        ->assertOk()
+        ->assertSeeLivewire(Register::class);
 });
 
 test('new users can register', function () {
-    $response = $this->post('/register', [
-        'name' => 'Test User',
-        'email' => 'test@example.com',
-        'password' => 'password',
-        'password_confirmation' => 'password',
-    ]);
+    $component = Livewire::test(Register::class)
+        ->set('name', 'Test User')
+        ->set('email', 'test@example.com')
+        ->set('password', 'password')
+        ->set('password_confirmation', 'password');
+
+    $component->call('register');
+
+    $component->assertRedirect(route('dashboard', absolute: false));
 
     $this->assertAuthenticated();
-    $response->assertRedirect(route('dashboard', absolute: false));
 });

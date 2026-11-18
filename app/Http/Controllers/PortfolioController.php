@@ -2,60 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Inertia\Inertia;
+use App\Services\Content\CaseStudyCatalog;
+use App\Services\Content\ServiceCatalog;
+use App\Services\SeoService;
+use Illuminate\Contracts\View\View;
 
 class PortfolioController extends Controller
 {
-    public function index()
+    public function index(SeoService $seo, CaseStudyCatalog $caseStudies): View
     {
+        $allCaseStudies = $caseStudies->all();
 
-        return Inertia::render('Portfolio/Index', [
-            'og_image' => asset('/images/branding/og.png'),
-            'portfolio' => [
-                [
-                    'id' => 1,
-                    'title' => 'Propify – Real Estate Marketplace (Kenya)',
-                    'description' => 'A comprehensive real estate web platform enabling property listings, lead management, and secure user interactions for agents, developers, and buyers.',
-                    'category' => 'Web Platform',
-                    'image_url' => asset('/images/projects/propify.png')
-                ],
-                [
-                    'id' => 2,
-                    'title' => 'Social Scheduler Pro',
-                    'description' => 'An AI-powered social media scheduling and automation platform supporting multi-account publishing, team collaboration, and performance optimization.',
-                    'category' => 'AI & Automation Platform',
-                    'image_url' => asset('/images/projects/socialscheduler.png')
-                ],
-                [
-                    'id' => 3,
-                    'title' => 'Rezimi – AI Resume Builder',
-                    'description' => 'A SaaS application that leverages AI to generate, optimize, and tailor professional resumes based on job descriptions and career goals.',
-                    'category' => 'SaaS Application',
-                    'image_url' => asset('/images/projects/rezimi.png')
-                ],
-                [
-                    'id' => 4,
-                    'title' => 'Farm Operations Automation System',
-                    'description' => 'A digital farm management solution designed to automate operations, track activities, and improve productivity through data-driven insights.',
-                    'category' => 'Automation System',
-                    'image_url' => asset('/images/projects/mkulima.png')
-                ],
-                [
-                    'id' => 5,
-                    'title' => 'Omnifood – Food Delivery Platform',
-                    'description' => 'A modern food delivery web application enabling online ordering, menu management, and seamless customer-to-restaurant interactions.',
-                    'category' => 'E-commerce Application',
-                    'image_url' => asset('/images/projects/omnifood.png')
-                ],
-                [
-                    'id' => 6,
-                    'title' => 'Hotelia – Hotel Management System',
-                    'description' => 'A centralized hotel management platform for handling reservations, room availability, guest records, and operational reporting.',
-                    'category' => 'Hospitality Management System',
-                    'image_url' => asset('/images/projects/hotelia.png')
-                ],
-            ],
+        return view('site.portfolio.index', [
+            'seo' => $seo->page(
+                title: 'Portfolio & Case Studies',
+                description: 'Real estate marketplaces, SaaS platforms, AI tools, farm automation and hospitality systems built by Propify Solutions for clients in Kenya and beyond.',
+                path: '/portfolio',
+                keywords: ['software portfolio Kenya', 'case studies software development Nairobi', 'web app projects Kenya'],
+                breadcrumbs: [['name' => 'Portfolio', 'path' => '/portfolio']],
+                schema: [$seo->itemList('/portfolio', 'Case studies', collect($allCaseStudies)->map(fn (array $caseStudy): array => [
+                    'name' => $caseStudy['title'],
+                    'path' => "/portfolio/{$caseStudy['slug']}",
+                ])->all())],
+            ),
+            'caseStudies' => $allCaseStudies,
+        ]);
+    }
+
+    public function show(string $slug, SeoService $seo, CaseStudyCatalog $caseStudies, ServiceCatalog $services): View
+    {
+        $caseStudy = $caseStudies->find($slug) ?? abort(404);
+        $path = "/portfolio/{$slug}";
+        $image = $seo->url($caseStudy['image']);
+
+        return view('site.portfolio.show', [
+            'seo' => $seo->page(
+                title: "{$caseStudy['title']} – Case Study",
+                description: $caseStudy['summary'],
+                path: $path,
+                keywords: [$caseStudy['industry'].' software', $caseStudy['category'], 'case study'],
+                breadcrumbs: [['name' => 'Portfolio', 'path' => '/portfolio'], ['name' => $caseStudy['name'], 'path' => $path]],
+                schema: [[
+                    '@type' => 'CreativeWork',
+                    '@id' => $seo->url($path).'#casestudy',
+                    'name' => $caseStudy['title'],
+                    'description' => $caseStudy['summary'],
+                    'image' => $image,
+                    'genre' => $caseStudy['category'],
+                    'creator' => ['@id' => $seo->organizationId()],
+                    'keywords' => implode(', ', $caseStudy['stack']),
+                ]],
+                image: $image,
+            ),
+            'caseStudy' => $caseStudy,
+            'services' => collect($caseStudy['services'])->map(fn (string $serviceSlug): ?array => $services->find($serviceSlug))->filter()->values()->all(),
+            'moreCaseStudies' => collect($caseStudies->all())->reject(fn (array $other): bool => $other['slug'] === $slug)->take(3)->values()->all(),
         ]);
     }
 }
